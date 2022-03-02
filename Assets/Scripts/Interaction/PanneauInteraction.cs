@@ -14,13 +14,13 @@ public class PanneauInteraction : BaseInteraction
         _messageBox.gameObject.SetActive(false);
     }
 
-    public override void DoAction()
+    public override void DoAction() // affiche message
     {
         Debug.Log("DoAction");
         _messageBox.gameObject.SetActive(true);
     }
 
-    public override void ExitAction()
+    public override void ExitAction() // efface message
     {
         _messageBox.gameObject.SetActive(false);
     }

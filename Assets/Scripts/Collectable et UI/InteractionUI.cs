@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 /// Représente les différents contrôleurs
 /// qui peut être lu dans le programme
 /// </summary>
-public enum ControlerType
+public enum ControlerType  // creation pcq default yen a pas
 {
     XBOX_GAMEPAD, DUALSHOCK_GAMEPAD,
     SWITCH_GAMEPAD, IOS_GAMEPAD, KEYBOARD
@@ -21,8 +21,8 @@ public enum ControlerType
 [System.Serializable]
 public struct ControlerSprite
 {
-    public ControlerType Controler;
-    public Sprite Sprite;
+    public ControlerType Controler; // dit quelle type de controller qu'on a 
+    public Sprite Sprite; // image 
 }
 
 [RequireComponent(typeof(Image))]
@@ -59,17 +59,17 @@ public class InteractionUI : MonoBehaviour
 
     private void Start()
     {
-        InteractionUI.Instance = this;
+        InteractionUI.Instance = this; // singleton
 
         _image = this.gameObject.GetComponent<Image>();
 
         if (_textInteraction == null || _textKeyboardControl == null)
             throw new MissingReferenceException("Un ou des enfants sont manquants");
 
-        if (Keyboard.current != null)
+        if (Keyboard.current != null) // voir si cest connecter
         {
-            InputSystem.onDeviceChange +=
-                (device, change) =>
+            InputSystem.onDeviceChange +=  // si on debranche change manette
+                (device, change) =>  
                 {
                     //if (device.name.Contains("Keyboard"))
                     //    this.SetKeyboardControlText();
@@ -85,11 +85,11 @@ public class InteractionUI : MonoBehaviour
     public void UpdateUIButtonLayout()
     {
         SetKeyboardControlText();
-        SetSpriteFromControl();
-        this._textKeyboardControl.enabled = (Gamepad.current == null);
+        SetSpriteFromControl(); // chercher sprite selon le clavier/consol que cest
+        this._textKeyboardControl.enabled = (Gamepad.current == null);  // defini si on enable le btn ou pas 
     }
 
-    public void SetKeyboardControlText()
+    public void SetKeyboardControlText() // aller chercher le clavier selon le type de clavier ex : clavier francais convertir q en a 
     {
         if (Keyboard.current != null)
         {
@@ -97,7 +97,7 @@ public class InteractionUI : MonoBehaviour
                 = Keyboard.current.FindKeyOnCurrentKeyboardLayout(_keyboardControlActionName.ToString());
             if (control != null)
             {
-                string[] path = control.path.Split('/');
+                string[] path = control.path.Split('/'); // path pcq unity va generer long chemin juste pour dire quelle lettre ( facon de trouver / lettre chercher )
                 _textKeyboardControl.text = path[path.Length - 1].ToUpper();
             } else
                 _textKeyboardControl.text = string.Empty;
@@ -141,7 +141,7 @@ public class InteractionUI : MonoBehaviour
     /// Affiche le GO avec le message
     /// </summary>
     /// <param name="message">Message à afficher</param>
-    public void ActiveMessage(string message)
+    public void ActiveMessage(string message) 
     {
         this._textInteraction.text = message;
         this.gameObject.SetActive(true);

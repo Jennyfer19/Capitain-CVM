@@ -81,7 +81,7 @@ public class PlayerMouvement : MonoBehaviour
         // Au départ, aucune interaction
         InteractionAction = null;
         // Initialise _enMonte
-        this._enMonte = false;
+        this._enMonte = false; // debut perso monte pas
     }
 
     void Update()
@@ -117,7 +117,7 @@ public class PlayerMouvement : MonoBehaviour
     /// <param name="value">Valeur de l'input (ex. appuyer ou non)</param>
     public void OnHorizontal(InputValue value)
     {
-        if (!_enMonte)
+        if (!_enMonte)  // si tu montes pas tu marches droit guache
         {
             _direction.x = value.Get<float>();
             _direction.y = 0;
@@ -165,7 +165,7 @@ public class PlayerMouvement : MonoBehaviour
             InteractionAction();
     }
 
-    public void SetEnMonte(bool value = true)
+    public void SetEnMonte(bool value = true) // juste dire si on monte en ce moment
     {
         this._enMonte = value;
     }

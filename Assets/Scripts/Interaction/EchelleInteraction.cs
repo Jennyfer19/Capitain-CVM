@@ -9,24 +9,24 @@ public class EchelleInteraction : BaseInteraction
 
     public override void ExitAction() { QuitterEchelle(); }
 
-    public override void DoAction()
+    public override void DoAction() // appeler seulement si on est en collison avec joueur
     {
 
         // Placer le code pour l'action ici
         Debug.Log("Monter à l'échelle");
 
         PlayerMouvement pm = GameObject.FindGameObjectWithTag("Player")
-            .GetComponent<PlayerMouvement>();
+            .GetComponent<PlayerMouvement>(); // chercher player
         pm.SetEnMonte(true);
         Rigidbody2D rb = pm.gameObject.GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0;
-        rb.velocity = new Vector2(rb.velocity.x, 0);
+        rb.gravityScale = 0; // dire gravite a zero pour que player puisse monter
+        rb.velocity = new Vector2(rb.velocity.x, 0); // eviter ca arrete un coup et va continuer de marhcer
 
-        _colliderPlateform.enabled = false;
+        _colliderPlateform.enabled = false; 
 
         pm.gameObject.GetComponent<Animator>().SetBool("EnMonte", true);
         
-        InteractionUI.Instance.ActiveMessage("Quitter l'échelle");
+        InteractionUI.Instance.ActiveMessage("Quitter l'échelle");  // mtn affiche quitter echelle
         pm.InteractionAction -= DoAction;
         pm.InteractionAction += QuitterEchelle;
     }   
