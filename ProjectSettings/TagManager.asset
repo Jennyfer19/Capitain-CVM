@@ -8,6 +8,7 @@ TagManager:
   - Ennemy
   - Plateform
   - Tilemap Water
+  - Bat
   layers:
   - Default
   - TransparentFX
