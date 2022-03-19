@@ -50,6 +50,10 @@ public class PlayerData
     /// </summary>
     public const int MAX_ENERGIE = 4;
     /// <summary>
+    /// Représente le nombre de conge recolte
+    /// </summary>
+    private int _conge;
+    /// <summary>
     /// Permet d'identifier les actions sur le UI à réaliser
     /// lors de la perte d'énergie
     /// </summary>
@@ -67,6 +71,7 @@ public class PlayerData
     public int Energie { get { return this._energie; } }
     public int Vie { get { return this._vie; } }
     public int Score { get { return this._score; } }
+    public int Conge { get { return this._conge; } }
     public string[] ListeCoffreOuvert { get { return this._chestOpenList.ToArray(); } }
 
     public PlayerData()
@@ -77,6 +82,7 @@ public class PlayerData
         this._volumeGeneral = 0;
         this._volumeMusique = 0;
         this._volumeEffet = 0;
+        this._conge = 0;
         this.UIPerteEnergie = null;
         this.UIPerteVie = null;
         this.Gameover = null;
@@ -167,6 +173,11 @@ public class PlayerData
         this._score += gain;
     }
 
+    public void IncrConge(int gain = 1)
+    {
+        this._conge += gain;
+    }
+
     /// <summary>
     /// Ajoute le nom du coffre à la liste
     /// </summary>
@@ -186,4 +197,5 @@ public class PlayerData
     {
         return this._chestOpenList.Contains(nom);
     }
+
 }

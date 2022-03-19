@@ -24,6 +24,7 @@ public class BatBehaviour : MonoBehaviour
             {
                 this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 this.gameObject.GetComponent<BatPatrol>().enabled = false;
+                GameObject.Destroy(this.gameObject);
             }
     }
 
