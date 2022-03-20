@@ -43,9 +43,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        PartieFini();
         SaveData();
         SceneManager.activeSceneChanged += ChangementScene;
         ChangementScene(new Scene(), SceneManager.GetActiveScene());
+        _instance.PlayerData.Gameover += PartieFini;
         //List<string> cl = new List<string>();
         //cl.Add("test_1");
         //cl.Add("test_2");
@@ -58,6 +60,11 @@ public class GameManager : MonoBehaviour
         //Debug.Log(jdata);
         //PlayerData read = PlayerDataJson.ReadJson(jdata);
         //Debug.Log(read.Vie);
+    }
+
+    public void PartieFini()
+    {
+        Debug.Log("fin");
     }
 
     public void SaveData()
