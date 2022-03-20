@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     {
         SaveData();
         SceneManager.activeSceneChanged += ChangementScene;
+        GameManager.Instance.PlayerData.Gameover += PartieFini;
         ChangementScene(new Scene(), SceneManager.GetActiveScene());
         //List<string> cl = new List<string>();
         //cl.Add("test_1");
@@ -78,10 +79,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
     }
 
-    private void LoadPlayerData()
+    private void LoadPlayerData(bool _gameOver = false)
     {
         string path = Path.Combine(Application.persistentDataPath, "savedata_encrypt.json");
-        if (File.Exists(path))
+        if (File.Exists(path) && ! _gameOver)
         {
             using (StreamReader stream = new StreamReader(path,
             System.Text.Encoding.UTF8))
@@ -118,6 +119,12 @@ public class GameManager : MonoBehaviour
         this.PlayerData.UIPerteVie = null;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name,
             LoadSceneMode.Single);
+    }
+
+    public void PartieFini() 
+    {
+        LoadPlayerData(true);
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void OnApplicationQuit()
