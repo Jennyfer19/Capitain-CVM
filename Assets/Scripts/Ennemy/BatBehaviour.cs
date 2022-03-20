@@ -7,8 +7,9 @@ public class BatBehaviour : MonoBehaviour
   
     [SerializeField]
     public const float _delaisDestruction = 1f;
-    public float _debutTempsDestruction;
+    private float _debutTempsDestruction;
     private bool _batMort = false;
+    private bool _surLaTete = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +29,9 @@ public class BatBehaviour : MonoBehaviour
             }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Player"))
+        if (collision.gameObject.tag.Equals("Player") == !_surLaTete)  // verifier si ca vient de la tete parce que si oui, on ne fait pas de degat 
         {
             PlayerBehaviour pb = collision.gameObject.GetComponent<PlayerBehaviour>();
             if (pb != null)
@@ -44,8 +45,9 @@ public class BatBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            _debutTempsDestruction = Time.fixedTime; 
-            Debug.Log("hit");
+
+            _debutTempsDestruction = Time.fixedTime;
+            _surLaTete = true;
             _batMort = true;
         }
     }
