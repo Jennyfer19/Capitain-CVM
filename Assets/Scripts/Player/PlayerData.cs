@@ -53,6 +53,9 @@ public class PlayerData
     /// Représente le nombre de conge recolte
     /// </summary>
     private int _conge;
+    /// Représente le nombre de salaire augmente recolte
+    /// </summary>
+    private int _augmentationSalaire;
     /// <summary>
     /// Permet d'identifier les actions sur le UI à réaliser
     /// lors de la perte d'énergie
@@ -72,6 +75,7 @@ public class PlayerData
     public int Vie { get { return this._vie; } }
     public int Score { get { return this._score; } }
     public int Conge { get { return this._conge; } }
+    public int AugSalaire { get { return this._augmentationSalaire; } }
     public string[] ListeCoffreOuvert { get { return this._chestOpenList.ToArray(); } }
 
     public PlayerData()
@@ -83,6 +87,7 @@ public class PlayerData
         this._volumeMusique = 0;
         this._volumeEffet = 0;
         this._conge = 0;
+        this._augmentationSalaire = 0;
         this.UIPerteEnergie = null;
         this.UIPerteVie = null;
         this.Gameover = null;
@@ -90,7 +95,7 @@ public class PlayerData
     }
 
     public PlayerData(int vie = 1, int energie = 2, int score = 0,
-        float volumeGeneral = 0, float volumeMusique = 0, float volumeEffet = 0,
+        float volumeGeneral = 0, float volumeMusique = 0, float volumeEffet = 0, int conge = 0, int augmentationSalaire = 0,
         System.Action uiPerteEnergie = null, System.Action uiPerteVie = null,
         System.Action gameOver = null, List<string> ChestList = null)
     {
@@ -100,6 +105,8 @@ public class PlayerData
         this._volumeGeneral = volumeGeneral;
         this._volumeMusique = volumeMusique;
         this._volumeEffet = volumeEffet;
+        this._conge = conge;
+        this._augmentationSalaire = augmentationSalaire;
         this.UIPerteEnergie += uiPerteEnergie;
         this.UIPerteVie += uiPerteVie;
         this.Gameover += gameOver;
@@ -173,10 +180,23 @@ public class PlayerData
         this._score += gain;
     }
 
+    /// <summary>
+    /// Augmente le nombre de conge du joueur
+    /// </summary>
     public void IncrConge(int gain = 1)
     {
         this._conge += gain;
     }
+
+
+    /// <summary>
+    /// Augmente le nombre de fois que le salaire a ete augmente du joueur
+    /// </summary>
+    public void IncrSalaire(int gain = 1)
+    {
+        this._augmentationSalaire += gain;
+    }
+
 
     /// <summary>
     /// Ajoute le nom du coffre à la liste
@@ -197,5 +217,6 @@ public class PlayerData
     {
         return this._chestOpenList.Contains(nom);
     }
+
 
 }

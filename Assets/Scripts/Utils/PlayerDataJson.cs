@@ -20,7 +20,9 @@ public static class PlayerDataJson
         json += tab + "\"score\":" + data.Score + "," + newline;
         json += tab + "\"volumeGeneral\":" + data.VolumeGeneral.ToString().Replace(',', '.') + "," + newline; 
         json += tab + "\"volumeMusique\":" + data.VolumeMusique.ToString().Replace(',', '.') + "," + newline; 
-        json += tab + "\"volumeEffet\":" + data.VolumeEffet.ToString().Replace(',', '.') + "," + newline; 
+        json += tab + "\"volumeEffet\":" + data.VolumeEffet.ToString().Replace(',', '.') + "," + newline;
+        json += tab + "\"nbConge\":" + data.Conge + "," + newline;
+        json += tab + "\"nbAugmentationSalaire\":" + data.AugSalaire + "," + newline;
         json += tab + "\"chestOpenList\":[";
         if (data.ListeCoffreOuvert.Length > 0)
         {
@@ -58,7 +60,7 @@ public static class PlayerDataJson
             throw new JSONFormatExpcetion();
         json = json.Replace("\t", string.Empty);
 
-        int vie = 0, energie = 0, score = 0;
+        int vie = 0, energie = 0, score = 0, conge = 0, augmentationSalaire = 0 ;
         float vlmGeneral = 0, vlmMusique = 0, vlmEffet = 0;
         List<string> chests = new List<string>();
         string[] lignes = json.Split('\n');
@@ -90,6 +92,12 @@ public static class PlayerDataJson
                     break;
                 case "\"volumeEffet\"":
                     vlmEffet = float.Parse(parametre[1].Replace(",", string.Empty).Replace('.', ','));
+                    break;
+                case "\"nbConge\"":
+                    conge = int.Parse(parametre[1].Replace(",", string.Empty).Replace('.', ','));
+                    break;
+                case "\"nbAugmentationSalaire\"":
+                    augmentationSalaire = int.Parse(parametre[1].Replace(",", string.Empty).Replace('.', ','));
                     break;
                 case "\"chestOpenList\"":
                     if (parametre[1] == "[]")
