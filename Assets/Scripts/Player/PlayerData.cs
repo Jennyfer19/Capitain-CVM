@@ -74,6 +74,7 @@ public class PlayerData
     /// </summary>
     public System.Action Gameover;
 
+
     public int Energie { get { return this._energie; } }
     public int Vie { get { return this._vie; } }
     public int Score { get { return this._score; } }
@@ -122,6 +123,7 @@ public class PlayerData
         this._niveauList = new List<string>();
         if (NiveauList != null)
             this._niveauList = NiveauList;
+
     }
 
     /// <summary>
@@ -209,7 +211,8 @@ public class PlayerData
     public void AjouterNiveau(string s)
     {
         this._niveauList.Add(s);
-        this._niveauList = (List<string>)this._niveauList.Distinct();
+        this._niveauList = (List<string>)this._niveauList.Distinct().ToList(); // permet de ne pas avoir de doublon https://carldesouza.com/how-to-remove-duplicates-from-a-c-list/
+  
     }
 
 

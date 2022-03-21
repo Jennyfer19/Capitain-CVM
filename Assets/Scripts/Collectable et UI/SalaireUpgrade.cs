@@ -2,22 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CongeUpgrade : MonoBehaviour
+public class SalaireUpgrade : MonoBehaviour
 {
-    /// <summary>
-    /// Conge regagner au contact
-    /// </summary>
     [SerializeField]
-    private int _addConge = 1;
+    private int _addAugmentationSalaire = 1;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            GameManager.Instance.PlayerData.IncrConge(this._addConge);
+            GameManager.Instance.PlayerData.IncrSalaire(this._addAugmentationSalaire);
             GameObject.Destroy(this.gameObject);
         }
     }
-
-
 }

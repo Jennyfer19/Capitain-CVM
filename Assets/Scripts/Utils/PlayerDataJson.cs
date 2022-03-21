@@ -68,7 +68,7 @@ public static class PlayerDataJson
     /// ne peut pas contenir un format JSON</exception>
     public static PlayerData ReadJson(string json)
     {
-        if (json.Length < 2 || string.IsNullOrEmpty(json))
+       if (json.Length < 2 || string.IsNullOrEmpty(json))
             throw new
                 System.ArgumentException("La chaîne n'est pas valide");
         if (json[0] != '{')

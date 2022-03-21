@@ -11351,7 +11351,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: "Je ne m'attendais pas moins de vous. \nLa sortie se retrouve \xE0 votre
-        gauche."
+        droite."
       objectReference: {fileID: 0}
     - target: {fileID: 9116085673425792324, guid: 89bf360f8297ac24fab58444e42e24a1,
         type: 3}

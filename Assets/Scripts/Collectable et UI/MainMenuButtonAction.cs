@@ -1,9 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class MainMenuButtonAction : MonoBehaviour
 {
+    /// <summary>
+    /// Permet d'afficher les niveaux disponibles selon ce que le joueur a deja fait
+    /// </summary>
+    /// 
+    private List<string> _listeNiveau;
+
+    /// <summary>
+    /// Permet d'afficher les niveaux disponibles
+    /// </summary>
+    public void AfficherNiveauDisponible()
+    {
+        _listeNiveau = GameManager.Instance.PlayerData.ListeNiveau;
+    }
+
     /// <summary>
     /// Permet d'afficher un panel transmis en paramètre
     /// </summary>
