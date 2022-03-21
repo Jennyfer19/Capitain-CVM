@@ -153,6 +153,7 @@ public class PlayerMouvement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _estAuSol = collision.gameObject.tag.Equals("Tilemap")
+            || collision.gameObject.tag.Equals("Bat")
             || collision.gameObject.tag.Equals("Plateform");
 
         if (_enMonte && collision.gameObject.CompareTag("Tilemap"))
