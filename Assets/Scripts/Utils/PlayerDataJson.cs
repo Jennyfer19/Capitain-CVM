@@ -94,10 +94,10 @@ public static class PlayerDataJson
                     vlmEffet = float.Parse(parametre[1].Replace(",", string.Empty).Replace('.', ','));
                     break;
                 case "\"nbConge\"":
-                    conge = int.Parse(parametre[1].Replace(",", string.Empty).Replace('.', ','));
+                    conge = int.Parse(parametre[1].Replace(",", string.Empty));
                     break;
                 case "\"nbAugmentationSalaire\"":
-                    augmentationSalaire = int.Parse(parametre[1].Replace(",", string.Empty).Replace('.', ','));
+                    augmentationSalaire = int.Parse(parametre[1].Replace(",", string.Empty));
                     break;
                 case "\"chestOpenList\"":
                     if (parametre[1] == "[]")
@@ -114,7 +114,7 @@ public static class PlayerDataJson
             }
         }
 
-        return new PlayerData(vie, energie, score, vlmGeneral, vlmMusique, vlmEffet, ChestList: chests);
+        return new PlayerData(vie, energie, score, vlmGeneral, vlmMusique, vlmEffet, conge, augmentationSalaire,  ChestList: chests);
     }
 }
 

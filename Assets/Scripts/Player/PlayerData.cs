@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
 
 /// <summary>
 /// Représente les données de jeu
@@ -53,9 +55,18 @@ public class PlayerData
     /// Représente le nombre de conge recolte
     /// </summary>
     private int _conge;
+    /// <summary>
     /// Représente le nombre de salaire augmente recolte
     /// </summary>
     private int _augmentationSalaire;
+
+    /// <summary>
+    /// Représente les niveaux completes
+    /// </summary>
+    private List<string> _niveauComplete;
+
+
+
     /// <summary>
     /// Permet d'identifier les actions sur le UI à réaliser
     /// lors de la perte d'énergie
@@ -77,6 +88,7 @@ public class PlayerData
     public int Conge { get { return this._conge; } }
     public int AugSalaire { get { return this._augmentationSalaire; } }
     public string[] ListeCoffreOuvert { get { return this._chestOpenList.ToArray(); } }
+    public int NiveauReussi { get { return this._niveauComplete.Count; } }
 
     public PlayerData()
     {
@@ -195,6 +207,16 @@ public class PlayerData
     public void IncrSalaire(int gain = 1)
     {
         this._augmentationSalaire += gain;
+    }
+
+    /// <summary>
+    /// Ajouter un nouveau niveau reussi sans doublons 
+    /// idee vient de https://briancaos.wordpress.com/2021/07/02/c-remove-duplicates-from-list-with-linq/
+    /// </summary>
+    public void AjoutNiveauReussi(string s)
+    {
+        this._niveauComplete.Add(s);
+        this._niveauComplete = (List<string>)this._niveauComplete.Distinct();
     }
 
 
