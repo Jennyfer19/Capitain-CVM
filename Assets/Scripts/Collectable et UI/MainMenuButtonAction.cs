@@ -1,16 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System;
 
 public class MainMenuButtonAction : MonoBehaviour
 {
-
-    private void Start()
-    { 
-        
-    }
-
     /// <summary>
     /// Permet d'afficher un panel transmis en paramètre
     /// </summary>
@@ -44,15 +37,5 @@ public class MainMenuButtonAction : MonoBehaviour
     public void Quitter()
     {
         Application.Quit();
-    }
-
-    // <summary>
-    /// Permet d'afficher les niveaux disponibles l'application
-    /// </summary>
-    public void AfficherNiveauDispo()
-    {
-        // La liste des niveaux reussi contient aucun doublon
-        int i = GameManager.Instance.PlayerData.NiveauReussi;
-       
     }
 }
