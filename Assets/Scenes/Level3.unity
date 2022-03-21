@@ -52028,7 +52028,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 1003008516}
-  coins: {fileID: 0}
 --- !u!1001 &832434382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52283,7 +52282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1003008517
 RectTransform:
   m_ObjectHideFlags: 0
