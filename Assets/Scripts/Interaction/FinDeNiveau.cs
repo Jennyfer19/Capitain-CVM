@@ -14,6 +14,8 @@ public class FinDeNiveau : MonoBehaviour
             Debug.Log(SceneManager.GetActiveScene().name);
             GameManager.Instance.SaveData();
             SceneManager.LoadScene(next_scene);
+            GameManager.Instance.PlayerData.AjouterNiveau(SceneManager.GetActiveScene().name);
+
 
         }
     }

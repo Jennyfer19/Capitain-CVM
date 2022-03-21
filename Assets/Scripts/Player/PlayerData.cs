@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq; //  https://www.tutorialsteacher.com/codeeditor?cid=cs-Jb1cXC
 
 /// <summary>
 /// Représente les données de jeu
@@ -56,6 +57,8 @@ public class PlayerData
     /// Représente le nombre de salaire augmente recolte
     /// </summary>
     private int _augmentationSalaire;
+
+    private List<string> _niveauList;
     /// <summary>
     /// Permet d'identifier les actions sur le UI à réaliser
     /// lors de la perte d'énergie
@@ -78,6 +81,8 @@ public class PlayerData
     public int AugSalaire { get { return this._augmentationSalaire; } }
     public string[] ListeCoffreOuvert { get { return this._chestOpenList.ToArray(); } }
 
+    public List<string> ListeNiveau { get { return this._niveauList; } }
+
     public PlayerData()
     {
         this._vie = 0;
@@ -88,6 +93,7 @@ public class PlayerData
         this._volumeEffet = 0;
         this._conge = 0;
         this._augmentationSalaire = 0;
+        this._niveauList = new List<string>();
         this.UIPerteEnergie = null;
         this.UIPerteVie = null;
         this.Gameover = null;
@@ -95,7 +101,7 @@ public class PlayerData
     }
 
     public PlayerData(int vie = 1, int energie = 2, int score = 0,
-        float volumeGeneral = 0, float volumeMusique = 0, float volumeEffet = 0, int conge = 0, int augmentationSalaire = 0,
+        float volumeGeneral = 0, float volumeMusique = 0, float volumeEffet = 0, int conge = 0, int augmentationSalaire = 0, List<string> NiveauList = null,
         System.Action uiPerteEnergie = null, System.Action uiPerteVie = null,
         System.Action gameOver = null, List<string> ChestList = null)
     {
@@ -113,6 +119,9 @@ public class PlayerData
         this._chestOpenList = new List<string>();
         if (ChestList != null)
             this._chestOpenList = ChestList;
+        this._niveauList = new List<string>();
+        if (NiveauList != null)
+            this._niveauList = NiveauList;
     }
 
     /// <summary>
@@ -195,6 +204,12 @@ public class PlayerData
     public void IncrSalaire(int gain = 1)
     {
         this._augmentationSalaire += gain;
+    }
+
+    public void AjouterNiveau(string s)
+    {
+        this._niveauList.Add(s);
+        this._niveauList = (List<string>)this._niveauList.Distinct();
     }
 
 

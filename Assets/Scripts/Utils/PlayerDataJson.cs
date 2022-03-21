@@ -23,6 +23,21 @@ public static class PlayerDataJson
         json += tab + "\"volumeEffet\":" + data.VolumeEffet.ToString().Replace(',', '.') + "," + newline;
         json += tab + "\"nbConge\":" + data.Conge + "," + newline;
         json += tab + "\"nbAugmentationSalaire\":" + data.AugSalaire + "," + newline;
+        json += tab + "\"listNiveau\":[";
+        if (data.ListeNiveau.Count > 0)
+        {
+            json += newline;
+            for (int i = 0; i < data.ListeNiveau.Count; i++)
+            {
+                string niveau = data.ListeNiveau[i];
+                json += tab + tab + "\"" + niveau + "\"";
+                if (i + 1 < data.ListeNiveau.Count)
+                    json += ",";
+                json += newline;
+            }
+            json += tab + "]" + newline;
+        }
+        else json += "]" + newline;
         json += tab + "\"chestOpenList\":[";
         if (data.ListeCoffreOuvert.Length > 0)
         {
@@ -63,6 +78,7 @@ public static class PlayerDataJson
         int vie = 0, energie = 0, score = 0, conge = 0, augmentationSalaire = 0 ;
         float vlmGeneral = 0, vlmMusique = 0, vlmEffet = 0;
         List<string> chests = new List<string>();
+        List<string> niveau = new List<string>();
         string[] lignes = json.Split('\n');
         
         for(int i = 1; i < lignes.Length || lignes[i] != "}"; i++)
@@ -99,6 +115,18 @@ public static class PlayerDataJson
                 case "\"nbAugmentationSalaire\"":
                     augmentationSalaire = int.Parse(parametre[1].Replace(",", string.Empty).Replace('.', ','));
                     break;
+                case "\"listNiveau\"":
+                    if (parametre[1] == "[]")
+                        break;
+                    else if (parametre[1] != "[")
+                        throw new JSONFormatExpcetion();
+                    while (lignes[++i] != "]")
+                    {
+                        niveau.Add(lignes[i]
+                            .Replace(",", string.Empty)
+                            .Replace("\"", string.Empty));
+                    }
+                    break;
                 case "\"chestOpenList\"":
                     if (parametre[1] == "[]")
                         break;
@@ -114,7 +142,7 @@ public static class PlayerDataJson
             }
         }
 
-        return new PlayerData(vie, energie, score, vlmGeneral, vlmMusique, vlmEffet, ChestList: chests);
+        return new PlayerData(vie, energie, score, vlmGeneral, vlmMusique, vlmEffet, conge, augmentationSalaire, niveau, ChestList: chests);
     }
 }
 
